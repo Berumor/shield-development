@@ -13,6 +13,15 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Check MSBuild
+      shell: cmd
+      run: |
+        where msbuild
+        msbuild -version
+
     - name: Generate Visual Studio solution
       shell: cmd
       run: |
