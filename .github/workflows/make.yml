@@ -14,6 +14,7 @@ jobs:
         submodules: recursive
 
     - name: Generate Visual Studio solution
+      shell: cmd
       run: |
         generate.bat
 
