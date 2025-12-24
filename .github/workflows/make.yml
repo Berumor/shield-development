@@ -1,0 +1,30 @@
+name: C/C++ CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository (with submodules)
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Generate Visual Studio solution
+      run: |
+        generate.bat
+
+    - name: Build Release (VS2022)
+      run: |
+        msbuild build\shield-development.sln ^
+          /p:Configuration=Release ^
+          /p:Platform=x64
+
+    - name: Upload XInput DLL
+      uses: actions/upload-artifact@v4
+      with:
+        name: XInput9_1_0.dll
+        path: build/**/XInput9_1_0.dll
