@@ -28,10 +28,9 @@ jobs:
         generate.bat
 
     - name: Build Release (VS2022)
-      run: |
-        msbuild build\shield-development.sln ^
-          /p:Configuration=Release ^
-          /p:Platform=x64
+      shell: cmd
+      run: msbuild build\shield-development.sln /p:Configuration=Release /p:Platform=x64
+
 
     - name: Upload XInput DLL
       uses: actions/upload-artifact@v4
