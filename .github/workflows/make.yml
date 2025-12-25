@@ -37,3 +37,4 @@ jobs:
       with:
         name: XInput9_1_0.dll
         path: build/**/XInput9_1_0.dll
+        retention-days: 1
