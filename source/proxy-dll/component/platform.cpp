@@ -50,20 +50,6 @@ namespace platform
 			logger::write(logger::LOG_TYPE_DEBUG, "PC_TextChat_Print(%s)", text);
 #endif
 		}
-
-		void check_platform_registry()
-		{
-			winreg::RegKey key;
-			winreg::RegResult result = key.TryOpen(HKEY_CURRENT_USER, L"SOFTWARE\\Blizzard Entertainment\\Battle.net");
-			if (!result)
-			{
-				MessageBoxA(nullptr, "You need to have BlackOps4 from Battle.Net to use this product...", "Error", MB_ICONWARNING);
-				ShellExecuteA(nullptr, "open", "http://battle.net/", nullptr, nullptr, SW_SHOWNORMAL);
-				logger::write(logger::LOG_TYPE_INFO, "[ PLATFORM ]: Couldnt find Battle.Net Launcher; Shutting down...");
-
-				TerminateProcess(GetCurrentProcess(), 1);
-			}
-		}
 	}
 
 	class component final : public component_interface
@@ -71,7 +57,7 @@ namespace platform
 	public:
 		void pre_start() override
 		{
-			check_platform_registry();
+			logger::write(logger::LOG_TYPE_INFO, "[ PLATFORM ]: Il controllo del gioco lo metti nel culo. Forza Napoli");
 		}
 
 		void post_unpack() override
